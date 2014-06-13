@@ -2,6 +2,11 @@
 
 #include <libusb-1.0/libusb.h>
 
+// this is the info function
+bool q = false;
+#define INFO(x...) \
+if (!q) { printf("[*] "), printf(x); }
+
 // this function is for getting filenames like $HOME/.sn0wbreak/onefi.le
 
 char *sbfile(char *filename) // tested, worx
@@ -20,13 +25,13 @@ char *sbfile(char *filename) // tested, worx
 // DFU mode function
 void dfu_init(void)
 {
-    info("Put your device in DFU.\n if you do not know what DFU mode is do not attempt this\n");
+    INFO("Put your device in DFU.\n if you do not know what DFU mode is do not attempt this\n");
     sleep(260);
-    info("device should be in DFU mode by now\n");
-    info("Done\n");
+    INFO("device should be in DFU mode by now\n");
+    INFO("Done\n");
 }
 
-
+/*
 int limera1n(void)
 {
     irecv_error_t error = IRECV_E_SUCCESS;
@@ -106,3 +111,4 @@ int limera1n(void)
     }
     return 0;
 }
+*/
