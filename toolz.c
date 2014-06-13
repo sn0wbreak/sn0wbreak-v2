@@ -1,4 +1,6 @@
-//utility file of the sn0wbreak project
+// utility file of the sn0wbreak project
+
+include <libusb-1.0/libusb.h>
 
 // this function is for getting filenames like $HOME/.sn0wbreak/onefi.le
 
