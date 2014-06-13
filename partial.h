@@ -1,5 +1,7 @@
 // PartialZip header from planetbeing
 
+#include <inttypes.h>
+#include <curl/curl.h>
 
 typedef struct EndOfCD {
 	uint32_t signature;
