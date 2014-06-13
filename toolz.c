@@ -1,6 +1,7 @@
 // utility file of the sn0wbreak project
 
 #include <libusb-1.0/libusb.h>
+#include <curl/curl.h>
 
 // this is the info function
 bool q = false;
@@ -31,7 +32,7 @@ void dfu_init(void)
     INFO("Done\n");
 }
 
-/*
+
 int limera1n(void)
 {
     irecv_error_t error = IRECV_E_SUCCESS;
@@ -111,4 +112,4 @@ int limera1n(void)
     }
     return 0;
 }
-*/
+
