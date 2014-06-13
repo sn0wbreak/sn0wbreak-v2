@@ -8,7 +8,6 @@
 #include "toolz.c"
 //#include "core.h"
 //#include "payload.h"
-//#include <libusb-1.0/libusb.h>
 
 int main ()
 {
