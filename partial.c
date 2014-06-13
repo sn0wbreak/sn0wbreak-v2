@@ -4,7 +4,7 @@
 #include <libgen.h>
 
 #include "common.h"
-#include "partial/partial.h"
+#include "partial.h"
 
 static size_t dummyReceive(void* data, size_t size, size_t nmemb, void* info) {
 	return size * nmemb;
