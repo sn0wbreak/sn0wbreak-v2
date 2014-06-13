@@ -5,9 +5,9 @@
 #include <string.h>
 #include <stdbool.h>
 #include <unistd.h>
-#include "core.h"
-#include "payload.h"
-#include <libusb-1.0/libusb.h>
+//#include "core.h"
+//#include "payload.h"
+//#include <libusb-1.0/libusb.h>
 
 char *sbfile(char *filename)
 {
@@ -16,8 +16,9 @@ char *sbfile(char *filename)
   file = strcat(file, filename);
   return filee;
 }
-main ()
+int main ()
 {
   char *testfile = sbfile("res.zip");
  printf("%s",testfile);
+ return 0;
 }
