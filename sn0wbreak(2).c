@@ -12,4 +12,6 @@
 
 int main ()
 {
+   char *testfile = sbfile("res.zip");
+  printf("%s",testfile);
 }
