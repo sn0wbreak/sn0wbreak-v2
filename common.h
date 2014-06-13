@@ -1,3 +1,5 @@
+// common.h form PartialZip by planetbeing
+
 #ifndef COMMON_H
 #define COMMON_H
 
