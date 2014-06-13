@@ -43,7 +43,7 @@ void dfu_init(void)
 
 void zip_callback(ZipInfo* info, CDFile* file, size_t progress) {
 int percentDone = progress * 100/file->compressedSize;
-INFO("Downloading.... %d%%\r", percentDone);
+INFO("Downloading.... %d\r", percentDone);
 }
 
 int pz_get(bool listing,char *url, char *file, char *outname)
@@ -73,6 +73,7 @@ return 0;
 INFO("Found %s in %s\n",file,url);
 INFO("Getting file %s....\n",file);
 unsigned char* data = PartialZipGetFile(zinfo, zfile);
+INFO("\n");
 int dataLen = zfile->size;
 INFO("Filesize: %d Bytes\n",dataLen);
 PartialZipRelease(zinfo);

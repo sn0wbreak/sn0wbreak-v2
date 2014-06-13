@@ -12,5 +12,5 @@
 
 int main ()
 {
-pz_get(true,"http://sn0wbreak.com/res.zip", "fstab", sbfile("test.txt"));
+pz_get(false,"http://sn0wbreak.com/res.zip", "Cydia.tar", sbfile("Cydia.tar-2"));
 }
