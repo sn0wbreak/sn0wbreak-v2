@@ -8,3 +8,16 @@
 #include "core.h"
 #include "payload.h"
 #include <libusb-1.0/libusb.h>
+
+char *sbfile(char *filename)
+{
+  char *homedir = getenv("HOME");
+  char *file = strcat(homedir, "/.sn0wbreak/");
+  file = strcat(file, filename);
+  return filee;
+}
+main ()
+{
+  char *testfile = sbfile("res.zip");
+ printf("%s",testfile);
+}
