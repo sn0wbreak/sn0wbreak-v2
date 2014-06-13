@@ -12,5 +12,5 @@
 
 int main ()
 {
-pz_get(false,"http://sn0wbreak.com/res.zip", "Cydia.tar", sbfile("Cydia.tar-2"));
+// Do something
 }

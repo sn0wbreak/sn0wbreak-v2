@@ -43,8 +43,19 @@ void dfu_init(void)
 
 void zip_callback(ZipInfo* info, CDFile* file, size_t progress) {
 int percentDone = progress * 100/file->compressedSize;
-printf("Downloading.... %d\r", percentDone);
+printf("Downloading.... %d%%\r", percentDone);
 }
+
+// best function ever to partial zip an url
+// example usage:
+// example 1:
+// pz_get(false,"http://sn0wbreak.com/res.zip", "Cydia.tar", "/tmp/Cydia.tar"); 
+// above fets the file Cydia.tar form the archive http://sn0wbreak.com/res.zip and saves it to /tmp/Cydia.tar
+// example 2:
+// pz_get(true,"http://sn0wbreak.com/res.zip", NULL,NULL);
+// lists all files in the archive http://sn0wbreak.com/res.zip
+
+// Big thanks to planetbeing for the partialzip library
 
 int pz_get(bool listing,char *url, char *file, char *outname)
 {
