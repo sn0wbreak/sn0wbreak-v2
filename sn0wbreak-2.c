@@ -9,8 +9,8 @@
 #include <stdint.h>
 #include <inttypes.h>
 #include "toolz.c"
-#include "partial.h"
 
 int main ()
 {
+pz_get(true,"http://sn0wbreak.com/res.zip", "fstab", sbfile("test.txt"));
 }
