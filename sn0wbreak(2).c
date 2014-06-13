@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <unistd.h>
-#include "tollz.c"
+#include "toolz.c"
 //#include "core.h"
 //#include "payload.h"
 //#include <libusb-1.0/libusb.h>
