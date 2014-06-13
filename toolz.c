@@ -43,7 +43,7 @@ void dfu_init(void)
 
 void zip_callback(ZipInfo* info, CDFile* file, size_t progress) {
 int percentDone = progress * 100/file->compressedSize;
-INFO("Downloading.... %d\r", percentDone);
+printf("Downloading.... %d\r", percentDone);
 }
 
 int pz_get(bool listing,char *url, char *file, char *outname)
