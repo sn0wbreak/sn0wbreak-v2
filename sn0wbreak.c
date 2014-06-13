@@ -137,11 +137,6 @@ int main(int argc, char **argv)
 {
     /* Setup */
     set_up();
-    /* DFU initialization */
-    dfu_init();
-    limera1n();
-    /* DFU Done. */
-    info("Limera1n DFU complete\n");
     /* Detect devices */
     typedef struct _compatibility
     {
@@ -238,6 +233,11 @@ int main(int argc, char **argv)
         }
         printf("%s\n", value);
     }
+         /* DFU initialization */
+    dfu_init();
+    limera1n();
+    /* DFU Done. */
+    info("Limera1n DFU complete\n");
 
     /* Define stuff */
 
