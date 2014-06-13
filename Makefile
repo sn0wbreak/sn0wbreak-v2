@@ -7,7 +7,7 @@ SOURCES=sn0wbreak-2.c
 all: $(TARGET)
 
 $(TARGET): $(TARGET).c
-$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES) $(LIBS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES) $(LIBS)
 
 clean:
-rm $(TARGET)
+	rm $(TARGET)
