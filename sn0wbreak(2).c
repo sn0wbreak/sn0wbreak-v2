@@ -14,7 +14,7 @@ char *sbfile(char *filename)
   char *homedir = getenv("HOME");
   char *file = strcat(homedir, "/.sn0wbreak/");
   file = strcat(file, filename);
-  return filee;
+  return file;
 }
 int main ()
 {
