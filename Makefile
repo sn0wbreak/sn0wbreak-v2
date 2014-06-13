@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS= -g -Wall
-LIBS = -lusb -lcurl
+LIBS = -lusb -lcurl -lz
 TARGET=sn0wbreak-2
 SOURCES=sn0wbreak-2.c \
 	partial.c
