@@ -1,5 +1,10 @@
 // code by planetbeing. https://github.com/planetbeing/partial-zip
 
+#include <curl/curl.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <inttypes.h>
 #include <zlib.h>
 #include <libgen.h>
 

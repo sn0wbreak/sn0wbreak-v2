@@ -1,7 +1,6 @@
 // utility file of the sn0wbreak project
 
 #include <libusb-1.0/libusb.h>
-#include <curl/curl.h>
 
 // this is the info function
 bool q = false;

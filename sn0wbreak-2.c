@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include <inttypes.h>
 #include "toolz.c"
-#include "partial.c"
+#include "partial.h"
 
 int main ()
 {
