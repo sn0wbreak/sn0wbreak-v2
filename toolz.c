@@ -1,120 +1,120 @@
-// utility file of the sn0wbreak project
+  // utility file of the sn0wbreak project
 
-#include <libusb-1.0/libusb.h>
-#include "partial.h"
-#include <stdbool.h>
-#include <math.h>
+  #include <libusb-1.0/libusb.h>
+  #include "partial.h"
+  #include <stdbool.h>
+  #include <math.h>
 
-// set the default quiet mode to 0
+  // set the default quiet mode to 0
 
-bool q = false;
+  bool q = false;
 
-// this is the info function
-#define INFO(x...) \
-if (!q) { printf("[*] "), printf(x);}
+  // this is the info function
+  #define INFO(x...) \
+  if (!q) { printf("[*] "), printf(x);}
 
-// and error
+  // and error
 
-#define ERROR(x...) \
- 	do { printf("[ERROR]: "), printf(x); } while(0);
+  #define ERROR(x...) \
+   	do { printf("[ERROR]: "), printf(x); } while(0);
 
 
-// this function is for getting filenames like $HOME/.sn0wbreak/onefi.le
+  // this function is for getting filenames like $HOME/.sn0wbreak/onefi.le
 
-char *sbfile(char *filename) // tested, worx
-{
-  /* example usage:
-  char *testfile = sbfile("res.zip");
-  printf("%s",testfile);
- */
-  char *homedir = getenv("HOME");
-  char *file = strcat(homedir, "/.sn0wbreak/");
-  if(!file_exists(file))
+  char *sbfile(char *filename) // tested, worx
   {
-    mkdir(file,0755);
+    /* example usage:
+    char *testfile = sbfile("res.zip");
+    printf("%s",testfile);
+    */
+    char *homedir = getenv("HOME");
+    char *file = strcat(homedir, "/.sn0wbreak/");
+    if(!file_exists(file))
+    {
+      mkdir(file,0755);
+    }
+    file = strcat(file, filename);
+    return file;
   }
-  file = strcat(file, filename);
-  return file;
-}
 
 
-// DFU mode function
-void dfu_init(void)
-{
+  // DFU mode function
+  void dfu_init(void)
+  {
     INFO("Put your device in DFU.\n if you do not know what DFU mode is do not attempt this\n");
     sleep(260);
     INFO("device should be in DFU mode by now\n");
     INFO("Done\n");
-}
+  }
 
-// zip dl info funnction
+  // zip dl info funnction
 
-void zip_callback(ZipInfo* info, CDFile* file, size_t progress) {
-int percentDone = progress * 100/file->compressedSize;
-printf("Downloading.... %d%%\r", percentDone);
-}
+  void zip_callback(ZipInfo* info, CDFile* file, size_t progress) {
+    int percentDone = progress * 100/file->compressedSize;
+    printf("Downloading.... %d%%\r", percentDone);
+  }
 
-// best function ever to partial zip an url
-// example usage:
-// example 1:
-// pz_get(false,"http://sn0wbreak.com/res.zip", "Cydia.tar", "/tmp/Cydia.tar"); 
-// above fets the file Cydia.tar form the archive http://sn0wbreak.com/res.zip and saves it to /tmp/Cydia.tar
-// example 2:
-// pz_get(true,"http://sn0wbreak.com/res.zip", NULL,NULL);
-// lists all files in the archive http://sn0wbreak.com/res.zip
+  // best function ever to partial zip an url
+  // example usage:
+  // example 1:
+  // pz_get(false,"http://sn0wbreak.com/res.zip", "Cydia.tar", "/tmp/Cydia.tar");
+  // above fets the file Cydia.tar form the archive http://sn0wbreak.com/res.zip and saves it to /tmp/Cydia.tar
+  // example 2:
+  // pz_get(true,"http://sn0wbreak.com/res.zip", NULL,NULL);
+  // lists all files in the archive http://sn0wbreak.com/res.zip
 
-// Big thanks to planetbeing for the partialzip library
+  // Big thanks to planetbeing for the partialzip library
 
-int pz_get(bool listing,char *url, char *file, char *outname)
-{
-//INFO("listing: %d, outname: %s, url: %s, file: %s\n", listing, outname, url, file);
-INFO("Initialazing partialzip....\n");
-ZipInfo* zinfo = PartialZipInit(url);
-if(!zinfo)
-{
-ERROR("Cannot find file %s\n",url);
-return 0;
-}
-if(listing)
-{
-printf("Files in %s:\n",url);
-PartialZipListFiles(zinfo);
-return 1;
-}
-INFO("Setting progress callback\n");
-PartialZipSetProgressCallback(zinfo, zip_callback);
-INFO("Searching for %s in %s\n",file,url);
-CDFile* zfile = PartialZipFindFile(zinfo, file);
-if(!zfile)
-{
-ERROR("Cannot find file %s in %s\n", file, url);
-return 0;
-}
-INFO("Found %s in %s\n",file,url);
-INFO("Getting file %s....\n",file);
-unsigned char* data = PartialZipGetFile(zinfo, zfile);
-INFO("\n");
-int dataLen = zfile->size;
-INFO("Filesize: %d Bytes\n",dataLen);
-PartialZipRelease(zinfo);
-data = realloc(data, dataLen + 1);
-data[dataLen] = '\0';
-FILE* outfile;
-INFO("Going to open outfile %s...\n",outname);
-outfile = fopen(outname, "w");
-if (outfile == NULL)
-{
-ERROR("Failed to open file %s\n",outname);
-return 0;
-}
-int done = 0;
-INFO("Opened outfile %s successfully, going to write...\n",outname);
-done = fwrite(data, sizeof(char), dataLen, outfile);
-fclose(outfile);
-free(data);
-INFO("Alright, everything worked! The file %s should be saved now!\n",outname);
-return 1;
-}
+  int pz_get(bool listing,char *url, char *file, char *outname)
+  {
+    //INFO("listing: %d, outname: %s, url: %s, file: %s\n", listing, outname, url, file);
+    INFO("Initialazing partialzip....\n");
+    ZipInfo* zinfo = PartialZipInit(url);
+    if(!zinfo)
+    {
+      ERROR("Cannot find file %s\n",url);
+      return 0;
+    }
+    if(listing)
+    {
+      printf("Files in %s:\n",url);
+      PartialZipListFiles(zinfo);
+      return 1;
+    }
+    INFO("Setting progress callback\n");
+    PartialZipSetProgressCallback(zinfo, zip_callback);
+    INFO("Searching for %s in %s\n",file,url);
+    CDFile* zfile = PartialZipFindFile(zinfo, file);
+    if(!zfile)
+    {
+      ERROR("Cannot find file %s in %s\n", file, url);
+      return 0;
+    }
+    INFO("Found %s in %s\n",file,url);
+    INFO("Getting file %s....\n",file);
+    unsigned char* data = PartialZipGetFile(zinfo, zfile);
+    INFO("\n");
+    int dataLen = zfile->size;
+    INFO("Filesize: %d Bytes\n",dataLen);
+    PartialZipRelease(zinfo);
+    data = realloc(data, dataLen + 1);
+    data[dataLen] = '\0';
+    FILE* outfile;
+    INFO("Going to open outfile %s...\n",outname);
+    outfile = fopen(outname, "w");
+    if (outfile == NULL)
+    {
+      ERROR("Failed to open file %s\n",outname);
+      return 0;
+    }
+    int done = 0;
+    INFO("Opened outfile %s successfully, going to write...\n",outname);
+    done = fwrite(data, sizeof(char), dataLen, outfile);
+    fclose(outfile);
+    free(data);
+    INFO("Alright, everything worked! The file %s should be saved now!\n",outname);
+    return 1;
+  }
 
 /* dat fuk not work
 // function to format a number of bytes to MiB GiB KiB etc
@@ -148,33 +148,33 @@ printf("%d%s",bytes,end);
 */ //end of not working shit
 
 // file_exists function, returns true if a file exists
-int file_exists(const char filename[]) {
-  struct stat stbuf;
-  if (stat(filename, &stbuf) == -1) {
-    return (0);
+  int file_exists(const char filename[]) {
+    struct stat stbuf;
+    if (stat(filename, &stbuf) == -1) {
+      return (0);
+    }
+    return (1);
   }
-  return (1);
-}
 
 // setup function (not working atm)
 
-void set_up(void) // PoC
-{
-//TODO: we need an array of the files
-char *ibss = sbfile("ibss.dfu");
-char *ibec = sbfile("ibec.dfu");
-char *devt = sbfile("devt.dfu");
-char *kerc = sbfile("kerc.dfu");
-char *rdisk = sbfile("rdisk.dmg");
-//TODO: loop trough the array instead of each file
-if(!file_exists(ibss))
-{
-INFO("Going to dl the ibss\n");
-pz_get(false,"http://sn0wbreak.com/res-v2.zip","ibss.dfu",ibss); //TODO: cache & fetching of the device type (iPhone3,?)
-}
-if(!file_exists(ibec))
-{
-INFO("Going to dl the ibec\n");
-pz_get(false,"http://sn0wbreak.com/res-v2.zip","ibec.dfu",ibss);
-}
-}
+  void set_up(void) // PoC
+  {
+    //TODO: we need an array of the files
+    char *ibss = sbfile("ibss.dfu");
+    char *ibec = sbfile("ibec.dfu");
+    char *devt = sbfile("devt.dfu");
+    char *kerc = sbfile("kerc.dfu");
+    char *rdisk = sbfile("rdisk.dmg");
+    //TODO: loop trough the array instead of each file
+    if(!file_exists(ibss))
+    {
+      INFO("Going to dl the ibss\n");
+      pz_get(false,"http://sn0wbreak.com/res-v2.zip","ibss.dfu",ibss); //TODO: cache & fetching of the device type (iPhone3,?)
+  }
+  if(!file_exists(ibec))
+  {
+    INFO("Going to dl the ibec\n");
+    pz_get(false,"http://sn0wbreak.com/res-v2.zip","ibec.dfu",ibss);
+  }
+  }
