@@ -33,8 +33,7 @@
     {
       mkdir(file,0755);
     }
-    file = strcat(file, filename);
-    return file;
+    return strcat(file, filename);
   }
 
 
@@ -160,16 +159,18 @@ printf("%d%s",bytes,end);
 
   void set_up(void) // PoC
   {
-    char files[] = {"ibss.dfu","ibec.dfu","devt.dfu","rdisk,dmg"};
-    //TODO: loop trough the array instead of each file
-    if(!file_exists(ibss))
+    char *files[] = {"ibss.dfu","ibec.dfu","devt.dfu","rdisk.dmg"};
+int *fackinglength = sizeof(files) / sizeof(*files);
+    for(int i = 0;i<fackinglength;i++)
     {
-      INFO("Going to dl the ibss\n");
-      pz_get(false,"http://sn0wbreak.com/res-v2.zip","ibss.dfu",ibss); //TODO: cache & fetching of the device type (iPhone3,?)
-  }
-  if(!file_exists(ibec))
-  {
-    INFO("Going to dl the ibec\n");
-    pz_get(false,"http://sn0wbreak.com/res-v2.zip","ibec.dfu",ibss);
-  }
+      char *file = files[i];
+      char *oname = sbfile(file); //TODO: get the shit working
+      if(!file_exists(oname))
+      {
+        INFO("Going to download %s and save it to %s\n",file,oname);
+        //pz_get(false,"http://sn0wbreak.com/res-v2.zip",file,oname); //TODO: cache & fetching of the device type (iPhone3,?)
+      }
+      file = NULL;
+      oname = NULL;
+    }
   }

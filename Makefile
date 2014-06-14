@@ -1,4 +1,4 @@
-CC=gcc
+CC=cc
 CFLAGS= -g -Wall
 LIBS = -lusb -lcurl -lz
 TARGET=sn0wbreak-2
