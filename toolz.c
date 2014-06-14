@@ -4,8 +4,11 @@
 #include "partial.h"
 #include <stdbool.h>
 
-// this is the info function
+// set the default quiet mode to 0
+
 bool q = false;
+
+// this is the info function
 #define INFO(x...) \
 if (!q) { printf("[*] "), printf(x);}
 
@@ -69,6 +72,7 @@ return 0;
 }
 if(listing)
 {
+printf("Files in %s:\n",url);
 PartialZipListFiles(zinfo);
 return 1;
 }
