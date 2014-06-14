@@ -112,7 +112,7 @@ INFO("Alright, everything worked! The file %s should be saved now!\n",outname);
 return 1;
 }
 
-
+/* dat fuk not work
 // function to format a number of bytes to MiB GiB KiB etc
 
 char *formatsize(int bytes)
@@ -141,3 +141,4 @@ char end[6] = " Bytes";
 printf("%d%s",bytes,end);
 }
 }
+*/ //end of not working shit
