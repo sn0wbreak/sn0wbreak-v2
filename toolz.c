@@ -3,6 +3,7 @@
 #include <libusb-1.0/libusb.h>
 #include "partial.h"
 #include <stdbool.h>
+#include <math.h>
 
 // set the default quiet mode to 0
 
@@ -111,3 +112,32 @@ INFO("Alright, everything worked! The file %s should be saved now!\n",outname);
 return 1;
 }
 
+
+// function to format a number of bytes to MiB GiB KiB etc
+
+char *formatsize(int bytes)
+{
+if(bytes > 1024 * 1024 * 1024)
+{
+char end[4] = " GiB";
+int size = bytes / 1024 / 1024 / 1024;
+printf("%d%s",size,end);
+}
+else if(bytes > 1024 * 1024)
+{
+char end[4] = " MiB";
+int size = bytes / 1024 / 1024;
+printf("%d%s",size,end);
+}
+else if(bytes > 1024)
+{
+char end[4] = " KiB";
+int size = bytes / 1024;
+printf("%d%s",size,end);
+}
+else if(bytes < 1024)
+{
+char end[6] = " Bytes";
+printf("%d%s",bytes,end);
+}
+}
