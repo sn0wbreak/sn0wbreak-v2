@@ -29,6 +29,10 @@ char *sbfile(char *filename) // tested, worx
  */
   char *homedir = getenv("HOME");
   char *file = strcat(homedir, "/.sn0wbreak/");
+  if(!file_exists(file))
+  {
+    mkdir(file,0755);
+  }
   file = strcat(file, filename);
   return file;
 }
@@ -142,3 +146,35 @@ printf("%d%s",bytes,end);
 }
 }
 */ //end of not working shit
+
+// file_exists function, returns true if a file exists
+int file_exists(const char filename[]) {
+  struct stat stbuf;
+  if (stat(filename, &stbuf) == -1) {
+    return (0);
+  }
+  return (1);
+}
+
+// setup function (not working atm)
+
+void set_up(void) // PoC
+{
+//TODO: we need an array of the files
+char *ibss = sbfile("ibss.dfu");
+char *ibec = sbfile("ibec.dfu");
+char *devt = sbfile("devt.dfu");
+char *kerc = sbfile("kerc.dfu");
+char *rdisk = sbfile("rdisk.dmg");
+//TODO: loop trough the array instead of each file
+if(!file_exists(ibss))
+{
+INFO("Going to dl the ibss\n");
+pz_get(false,"http://sn0wbreak.com/res-v2.zip","ibss.dfu",ibss); //TODO: cache & fetching of the device type (iPhone3,?)
+}
+if(!file_exists(ibec))
+{
+INFO("Going to dl the ibec\n");
+pz_get(false,"http://sn0wbreak.com/res-v2.zip","ibec.dfu",ibss);
+}
+}

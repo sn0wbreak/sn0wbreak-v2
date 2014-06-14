@@ -13,5 +13,4 @@
 int main ()
 {
 // Do something
-
 }
