@@ -160,12 +160,7 @@ printf("%d%s",bytes,end);
 
   void set_up(void) // PoC
   {
-    //TODO: we need an array of the files
-    char *ibss = sbfile("ibss.dfu");
-    char *ibec = sbfile("ibec.dfu");
-    char *devt = sbfile("devt.dfu");
-    char *kerc = sbfile("kerc.dfu");
-    char *rdisk = sbfile("rdisk.dmg");
+    char files[] = {"ibss.dfu","ibec.dfu","devt.dfu","rdisk,dmg"};
     //TODO: loop trough the array instead of each file
     if(!file_exists(ibss))
     {
