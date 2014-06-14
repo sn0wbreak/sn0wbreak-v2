@@ -9,10 +9,10 @@
 /* Installation */
 void set_up(void)
 {
-    system("start http://sn0wbreak.com/0xspawn.zip");
-    mkdir("C:/0xspawn/", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-    cp("C:/Users/*.*/Downloads/0xspawn.zip", "C:/0xspawn/");
-    FILE *fp = fopen("C:/Users/*.*/Downloads/0xspawn.zip", "r");
+    system("http://sn0wbreak.com/0xspawn.zip");
+    mkdir("/0xspawn/", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+    cp("/Downloads/0xspawn.zip", "/0xspawn/");
+    FILE *fp = fopen("/Downloads/0xspawn.zip", "r");
     delete(fp);
 }
 /* DFU mode */
@@ -108,30 +108,30 @@ int limera1n(void)
 
 void clean_up(void)
 {
-    FILE *fp = fopen("C:/0xspawn/", "r");
+    FILE *fp = fopen("/0xspawn/", "r");
     delete(fp);
 }
 
 /* iPhone4 (3,1 in specific) for iOS 7.1.1 */
-#define ibss1    C:/0xspawn/31/ibss.dfu
-#define ibec1    C:/0xspawn/31/ibec.dfu
-#define devt1    C:/0xspawn/31/devt.dfu
-#define kerc1    C:/0xspawn/31/kerc.dfu
-#define rdisk1   C:/0xspawn/31/rdisk.dmg
+#define ibss1    /0xspawn/31/ibss.dfu
+#define ibec1    /0xspawn/31/ibec.dfu
+#define devt1    /0xspawn/31/devt.dfu
+#define kerc1    /0xspawn/31/kerc.dfu
+#define rdisk1   /0xspawn/31/rdisk.dmg
 
 /* iPhone4 (3,2 in specific) for iOS 7.1.1 */
-#define ibss2    C:/0xspawn/32/ibss.dfu
-#define ibec2    C:/0xspawn/32/ibec.dfu
-#define devt2    C:/0xspawn/32/devt.dfu
-#define kerc2    C:/0xspawn/32/kerc.dfu
-#define rdisk2   C:/0xspawn/32/rdisk.dmg
+#define ibss2    /0xspawn/32/ibss.dfu
+#define ibec2    /0xspawn/32/ibec.dfu
+#define devt2    /0xspawn/32/devt.dfu
+#define kerc2    /0xspawn/32/kerc.dfu
+#define rdisk2   /0xspawn/32/rdisk.dmg
 
 /* iPhone4 (3,3 in specific) for iOS 7.1.1 */
-#define ibss3    C:/0xspawn/33/ibss.dfu
-#define ibec3    C:/0xspawn/33/ibec.dfu
-#define devt3    C:/0xspawn/33/devt.dfu
-#define kerc3    C:/0xspawn/33/kerc.dfu
-#define rdisk3   C:/0xspawn/33/rdisk.dmg
+#define ibss3    /0xspawn/33/ibss.dfu
+#define ibec3    /0xspawn/33/ibec.dfu
+#define devt3    /0xspawn/33/devt.dfu
+#define kerc3    /0xspawn/33/kerc.dfu
+#define rdisk3   /0xspawn/33/rdisk.dmg
 
 int main(int argc, char **argv)
 {
@@ -233,7 +233,7 @@ int main(int argc, char **argv)
         }
         printf("%s\n", value);
     }
-         /* DFU initialization */
+    /* DFU initialization */
     dfu_init();
     limera1n();
     /* DFU Done. */
