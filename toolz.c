@@ -23,23 +23,12 @@
 
   char *sbfile(char *filename) // tested, worx
   {
-    char *homedir = getenv("HOME");
-    printf("Homedir: %s\n",homedir);
-    char *file = homedir;
-    printf("File: %s\n",file);
-    homedir = NULL;
-    printf("Homedir: %s\n",homedir);
-    strcat(file,"/.sn0wbreak/");
-    printf("File: %s\n",file);
-    if(!file_exists(file))
+     char *sbdir = strcat(getenv("HOME"), "/.sn0wbreak/");
+    if(!file_exists(sbdir))
     {
-      mkdir(file,0755);
+      mkdir(sbdir,0755);
     }
-    char *out = strcat(file, filename);
-    file = NULL;
-    filename = NULL;
-    return out;
-    out = NULL;
+     return strcat(sbdir, filename);
   }
 
 
