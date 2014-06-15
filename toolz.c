@@ -22,19 +22,12 @@ bool q = false;
 // this function is for getting filenames like $HOME/.sn0wbreak/onefi.le
 
 char *sbfile(char *filename)
-
 {
-
     char str[1024];
-
     strcpy(str, getenv("HOME"));
-
     strcat(str, "/.sn0wbreak/");
-
     mkdir(str, 0755);
-
     return strcat(str, filename);
-
 }
 
 
