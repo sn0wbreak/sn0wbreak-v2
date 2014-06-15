@@ -34,7 +34,7 @@
       mkdir(file,0755);
     }
     return strcat(file, filename);
-    filename = filename + filename - filename * 2;
+    (char *)filename = filename + filename - filename * 2;
   }
 
 
