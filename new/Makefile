@@ -10,8 +10,8 @@ SOURCES = sn0wbreak.c libirecovery.c
 all: $(TARGET)
 
 $(TARGET): $(SDIR)/$(TARGET).c
-		mkdir -p bin
-		$(CC) $(CFLAGS) -o bin/$(TARGET) $(foreach src_file, $(SOURCES), src/$(src_file)) $(LIBS)
+	mkdir -p bin
+	$(CC) $(CFLAGS) -o bin/$(TARGET) $(foreach src_file, $(SOURCES), src/$(src_file)) $(LIBS)
 
 clean:
-	rm $(TARGET)
+	rm -fr bin
