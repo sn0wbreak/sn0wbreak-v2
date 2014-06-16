@@ -1,8 +1,7 @@
 CC=gcc
-IDIR=include
-SDIR=src
-CFLAGS= -g -Wall -I$(IDIR)
+CFLAGS= -g -Wall -Iinclude
 TARGET = sn0wbreak
+
 LIBS = -lusb-1.0
 SOURCES = sn0wbreak.c libirecovery.c
 
