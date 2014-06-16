@@ -9,9 +9,12 @@
 #include <stdint.h>
 #include <inttypes.h>
 
+#define DEBUG_ENABLED
+
 #include "libirecovery.h"
+#include "sn0wbreak.h"
 
 int main ()
 {
-   return 0;
+    return 0;
 }
