@@ -29,6 +29,13 @@ int main(int argc, char **argv)
 		ERROR("Something went wrong, could not get iDevice info!\n");
 		return -1;
 	}
-	printf("Product Type: %s\nHardware Model: %s\nBoard ID: %d\nChip ID: %d\n", device->product_type, device->hardware_model, device->board_id, device->chip_id);
+        const struct irecv_device_info *info = irecv_get_device_info(client);
+        if (!info)
+        {
+          ERROR("Could not get iDevice info!\n");
+          return -1;
+        }
+	printf("Product Type: %s\nHardware Model: %s\nBoard ID: %d\nChip ID: %d\nECID: %"PRId64" (decimal), %"PRIX64" (hexadecimal)\nIMEI: %s\n", device->product_type, device->hardware_model, device->board_id, device->chip_id,info->ecid, info->ecid,info->imei);
+
     return 0;
 }
